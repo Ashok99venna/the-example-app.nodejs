@@ -52,7 +52,7 @@ jobs:
       - run: npm run build
       - name: Build
         run: |
-          yarn packci:build
+            npm run build
       - name: Upload Artifacts
         id: upload-artifacts
         uses: actions/upload-artifact@v2
