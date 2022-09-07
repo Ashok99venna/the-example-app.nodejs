@@ -49,10 +49,9 @@ jobs:
           yarn install --frozen-lockfile
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run build
       - name: Build
         run: |
-            npm run build
+            yarn packci:build
       - name: Upload Artifacts
         id: upload-artifacts
         uses: actions/upload-artifact@v2
