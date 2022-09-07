@@ -49,7 +49,7 @@ jobs:
           yarn install --frozen-lockfile
       - uses: actions/checkout@v2
       - run: npm install
-      - run: dnf install -y gcc-c++ make 
+      - run: apt-get install build-essential
       - name: Build
         run: |
             yarn packci:build
