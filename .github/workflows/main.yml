@@ -50,7 +50,7 @@ jobs:
       - name: write env values
         id: envwrite
         run: |
-           node test/*.js
+           node test/*js
       - name: Build
         run: |
           yarn packci:build
