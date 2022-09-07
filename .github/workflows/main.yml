@@ -47,10 +47,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           yarn install --frozen-lockfile
-      - name: write env values
-        id: envwrite
-        run: |
-           node test/*js
+#       - name: write env values
+#         id: envwrite
+#         run: |
+#            node test/*js
       - name: Build
         run: |
           yarn packci:build
