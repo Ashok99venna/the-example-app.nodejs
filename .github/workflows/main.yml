@@ -2,7 +2,7 @@ name: "Build"
 on:
   push:
     branches:
-      - master 
+      - main1
   workflow_dispatch:
     inputs:
       logLevel:
@@ -35,7 +35,7 @@ jobs:
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: main
+          destination_branch: master
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/cache@v2.1.5
@@ -50,7 +50,8 @@ jobs:
       - name: write env values
         id: envwrite
         run: |
-          node config/writeVersion.js 1.0.${{github.run_number}}
+          #node config/run-e2e-test.js.${{github.run_number}}
+           node test/run-e2e-test.js.${{github.run_number}}
       - name: Build
         run: |
           yarn packci:build
