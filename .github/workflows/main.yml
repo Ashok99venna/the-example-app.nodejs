@@ -47,6 +47,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           yarn install --frozen-lockfile
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
       - name: Build
         run: |
           yarn packci:build
