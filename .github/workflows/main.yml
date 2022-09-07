@@ -96,13 +96,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: ${{ env.REGION }}
 
-      - name: Create new ElasticBeanstalk Application Version
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name ${{env.SERVICE}} \
-          --source-bundle S3Bucket=${{env.BUCKET}},S3Key=${{env.SERVICE_ID}}/${{env.DEPLOY_ARTIFACT}}.zip \
-          --version-label ${{env.APP_VERSION}} \
-          --description "commit-sha-${{ github.sha }}"
-      - name: Deploy  ElasticBeanstalk Application Version
-        run: aws elasticbeanstalk update-environment --environment-name ${{ matrix.project }} --version-label ${{env.APP_VERSION}}
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/auth/latest/remoteEntry.js"
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'ap-south-1'
 
