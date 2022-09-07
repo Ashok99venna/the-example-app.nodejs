@@ -52,7 +52,7 @@ jobs:
       - run: sudo apt-get install build-essential
       - name: Build
         run: |
-            yarn packci:build
+            npm build
       - name: Upload Artifacts
         id: upload-artifacts
         uses: actions/upload-artifact@v2
